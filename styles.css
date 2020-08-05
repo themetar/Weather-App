@@ -1,0 +1,50 @@
+/* Resets */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: inherit;
+  height: 100%;
+}
+
+#info {
+  position: relative;
+}
+
+#info > div > * {
+  margin-top: .33em;
+  margin-bottom: .66em;
+}
+
+.description {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.description > *:first-child {
+  flex-grow: 1;
+  align-self: center;
+}
+
+.temperature {
+  font-size: 36px;
+}
+
+.temperature,
+.temperature-feels {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
