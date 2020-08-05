@@ -18,7 +18,7 @@ function filterWeatherData (data) {
   return {
     group:          data.weather[0].main,
     description:    data.weather[0].description,
-    icon:           data.weather[0].icon,
+    icon_url:       `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
     temperature:    data.main.temp,
     feels_like:     data.main.feels_like,
     clouds:         data.clouds && data.clouds.all,
@@ -57,13 +57,33 @@ function displayData (data) {
   const info_element = document.getElementById("info");
 
   if (typeof data === "string") {
-    info_element.textContent = data;
+    info_element.innerHTML = [
+      "<div>",
+      `<p class="error">${data}</p>`,
+      "</div>",
+    ].join("");
   } else {
-    let lines = [];
-    for (let field in data) {
-      if (data[field])
-        lines.push(`${field}: ${data[field]}`);
-    }
-    info_element.innerHTML = lines.join("<br>");
+    let lines = [
+      "<div>",
+        `<img src="${data.icon_url}" />`,
+        `<p class="temperature">${data.temperature}</p>`,
+        `<small class="temperature-feels">Feels like ${data.feels_like}</small>`,
+        "<table>",
+          "<tr>",
+            data.rain ? '<td class="rain">Rain</td>' : "",
+            data.snow ? '<td class="snow">Snow</td>' : "",
+            data.clouds ? '<td class="clouds">Clouds</td>' : "",
+            data.wind_speed ? '<td class="wind">Wind</td>' : "",
+          "</tr>",
+          "<tr>",
+            data.rain ? `<td class="rain">${data.rain}</td>` : "",
+            data.snow ? `<td class="snow">${data.snow}</td>` : "",
+            data.clouds ? `<td class="clouds">${data.clouds}</td>` : "",
+            data.wind_speed ? `<td class="wind">${data.wind_speed}</td>` : "",
+          "</tr>",
+        "</table>",
+      "</div>",
+    ];
+    info_element.innerHTML = lines.join("");
   }
 }
