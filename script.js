@@ -45,10 +45,25 @@ document.getElementsByTagName("form")[0].addEventListener("submit", async event 
   let weather;
   try {
     weather = await getCurrentWeather(location, units);
-    console.log(filterWeatherData(weather));
+    displayData(filterWeatherData(weather));
   } catch (error) {
-    console.log("Wrong parameters");
+    displayData("Wrong parameters");
   } finally {
     loading = false;
   }
 });
+
+function displayData (data) {
+  const info_element = document.getElementById("info");
+
+  if (typeof data === "string") {
+    info_element.textContent = data;
+  } else {
+    let lines = [];
+    for (let field in data) {
+      if (data[field])
+        lines.push(`${field}: ${data[field]}`);
+    }
+    info_element.innerHTML = lines.join("<br>");
+  }
+}
