@@ -14,4 +14,21 @@ async function getCurrentWeather(location = "Bitola") {
   } 
 }
 
-getCurrentWeather("London").then(data => console.log(data));
+function filterWeatherData (data) {
+  return {
+    group:          data.weather[0].main,
+    description:    data.weather[0].description,
+    icon:           data.weather[0].icon,
+    temperature:    data.main.temp,
+    feels_like:     data.main.feels_like,
+    clouds:         data.clouds && data.clouds.all,
+    wind_speed:     data.wind && data.wind.speed,
+    wind_direction: data.wind && data.wind.deg,
+    rain:           data.rain && data.rain["1h"],
+    snow:           data.snow && data.snow["1h"],
+  };
+}
+
+getCurrentWeather("London").then(data => {
+  console.log(filterWeatherData(data))
+});
