@@ -29,6 +29,26 @@ function filterWeatherData (data) {
   };
 }
 
-getCurrentWeather("London").then(data => {
-  console.log(filterWeatherData(data))
+let loading = false;
+
+document.getElementsByTagName("form")[0].addEventListener("submit", async event => {
+  event.preventDefault(); // do not submit to server
+
+  if (loading) return;
+
+  loading = true;
+
+  const form = event.target;
+  const location = form.querySelector("input[name=location").value;
+
+  let weather;
+  try {
+    weather = await getCurrentWeather(location);
+    console.log(filterWeatherData(weather));
+  } catch (error) {
+    console.log("Wrong parameters");
+  } finally {
+    loading = false;
+  }
+  console.log("Awaited");  
 });
