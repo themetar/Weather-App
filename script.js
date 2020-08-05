@@ -1,8 +1,8 @@
 const apiKey = "b2f923af492ef49f597b7a7055e0035f";
 
-async function getCurrentWeather(location = "Bitola") {
+async function getCurrentWeather(location = "Bitola", units = "metric") {
   try {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`);
+    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`);
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -40,15 +40,15 @@ document.getElementsByTagName("form")[0].addEventListener("submit", async event 
 
   const form = event.target;
   const location = form.querySelector("input[name=location").value;
+  const units = [...form.querySelectorAll("input[name=units]")].find(input => input.checked).value;
 
   let weather;
   try {
-    weather = await getCurrentWeather(location);
+    weather = await getCurrentWeather(location, units);
     console.log(filterWeatherData(weather));
   } catch (error) {
     console.log("Wrong parameters");
   } finally {
     loading = false;
   }
-  console.log("Awaited");  
 });
