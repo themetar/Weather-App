@@ -65,9 +65,15 @@ function displayData (data) {
   } else {
     let lines = [
       "<div>",
-        `<img src="${data.icon_url}" />`,
+        '<div class="description">',
+          "<div>",
+            `<p>${data.group}</p>`,
+            `<p>${data.description}</p>`,
+          "</div>",
+          `<img src="${data.icon_url}" />`,
+        "</div>",
         `<p class="temperature">${data.temperature}</p>`,
-        `<small class="temperature-feels">Feels like ${data.feels_like}</small>`,
+        `<p class="temperature-feels"><small>Feels like ${data.feels_like}</small></p>`,
         "<table>",
           "<tr>",
             data.rain ? '<td class="rain">Rain</td>' : "",
