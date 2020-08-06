@@ -5,6 +5,25 @@
   margin: 0;
 }
 
+/* General */
+
+html {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+input,
+button {
+  color: inherit;
+}
+
+button {
+  border: 2px solid darkorange;
+  border-radius: .5em;
+  padding: .25em .5em;
+}
+
+/* Layout and design */
+
 body {
   min-height: 100vh;
 }
@@ -15,20 +34,58 @@ body {
   justify-content: center;
   min-height: inherit;
   height: 100%;
+  background-color: #666;
+  color: #333;
+}
+
+.container > div {
+  box-shadow: 0 0 .25em orange;
+  border-radius: 1em;
+}
+
+form {
+  padding: 1em;
+  background-color: orange;
+  border-radius: 1em 1em 0 0;
+  text-align: center;
+}
+
+input[type="text"] {
+  margin-bottom: .66em;
+  padding: .5em;
+  border-radius: .5em;
+  border: 1px solid transparent;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: black;
+}
+
+input[type="radio"]:focus {
+  outline: 1px solid black;
+}
+
+button {
+  margin-top: .66em;
+}
+
+button:focus {
+  outline: 1px solid black;
 }
 
 #info {
   position: relative;
-}
-
-#info > div > * {
-  margin-top: .33em;
-  margin-bottom: .66em;
+  padding: 1em;
+  background-color: white;
+  border-radius: 0 0 1em 1em;
 }
 
 .description {
   display: flex;
   flex-flow: row nowrap;
+  margin-top: .33em;
+  margin-bottom: .66em;
 }
 
 .description > *:first-child {
@@ -38,6 +95,9 @@ body {
 
 .temperature {
   font-size: 36px;
+  font-weight: 700;
+  margin-top: .33em;
+  margin-bottom: .1em;
 }
 
 .temperature,
@@ -46,5 +106,14 @@ body {
 }
 
 table {
+  margin-top: 1.33em;
   width: 100%;
+  padding: .5em;
+  border-radius: .5em;
+  background-color: rgba(255, 155, 0, .5);
+}
+
+table th {
+  font-size: 12px;
+  text-align: left;
 }
