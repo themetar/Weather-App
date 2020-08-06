@@ -85,7 +85,7 @@ function displayData (data) {
           `<img src="${data.icon_url}" />`,
         "</div>",
         `<p class="temperature">${data.temperature}&deg;${unit.temperature}</p>`,
-        `<p class="temperature-feels"><small>Feels like${data.feels_like}&deg; ${unit.temperature}</small></p>`,
+        `<p class="temperature-feels"><small>Feels like ${data.feels_like}&deg; ${unit.temperature}</small></p>`,
         "<table>",
           "<tr>",
             data.rain ? '<th class="rain">Rain</th>' : "",
