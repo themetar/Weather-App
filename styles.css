@@ -81,6 +81,12 @@ button:focus {
   border-radius: 0 0 1em 1em;
 }
 
+.location {
+  color: darkorange;
+  font-weight: 700;
+  text-align: right;
+}
+
 .description {
   display: flex;
   flex-flow: row nowrap;
@@ -91,6 +97,10 @@ button:focus {
 .description > *:first-child {
   flex-grow: 1;
   align-self: center;
+}
+
+.description p:first-child {
+  color: #999;
 }
 
 .temperature {
@@ -104,6 +114,8 @@ button:focus {
 .temperature-feels {
   text-align: center;
 }
+
+.temperature-feels { color: #999; }
 
 table {
   margin-top: 1.33em;
