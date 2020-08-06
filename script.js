@@ -31,6 +31,8 @@ function filterWeatherData (data) {
 
 let loading = false;
 
+let units; // store chosen units globally
+
 document.getElementsByTagName("form")[0].addEventListener("submit", async event => {
   event.preventDefault(); // do not submit to server
 
@@ -40,7 +42,7 @@ document.getElementsByTagName("form")[0].addEventListener("submit", async event 
 
   const form = event.target;
   const location = form.querySelector("input[name=location").value;
-  const units = [...form.querySelectorAll("input[name=units]")].find(input => input.checked).value;
+  units = [...form.querySelectorAll("input[name=units]")].find(input => input.checked).value;
 
   let weather;
   try {
@@ -55,6 +57,11 @@ document.getElementsByTagName("form")[0].addEventListener("submit", async event 
 
 function displayData (data) {
   const info_element = document.getElementById("info");
+
+  const unit = {
+    temperature: units == "metric" ? "C" : "F",
+    speed: units == "metric" ? "m/s" : "mph",
+  }
 
   if (typeof data === "string") {
     info_element.innerHTML = [
@@ -72,8 +79,8 @@ function displayData (data) {
           "</div>",
           `<img src="${data.icon_url}" />`,
         "</div>",
-        `<p class="temperature">${data.temperature}</p>`,
-        `<p class="temperature-feels"><small>Feels like ${data.feels_like}</small></p>`,
+        `<p class="temperature">${data.temperature}&deg;${unit.temperature}</p>`,
+        `<p class="temperature-feels"><small>Feels like${data.feels_like}&deg; ${unit.temperature}</small></p>`,
         "<table>",
           "<tr>",
             data.rain ? '<th class="rain">Rain</th>' : "",
@@ -82,10 +89,10 @@ function displayData (data) {
             data.wind_speed ? '<th class="wind">Wind</th>' : "",
           "</tr>",
           "<tr>",
-            data.rain ? `<td class="rain">${data.rain}</td>` : "",
-            data.snow ? `<td class="snow">${data.snow}</td>` : "",
-            data.clouds ? `<td class="clouds">${data.clouds}</td>` : "",
-            data.wind_speed ? `<td class="wind">${data.wind_speed}</td>` : "",
+            data.rain ? `<td class="rain">${data.rain} mm</td>` : "",
+            data.snow ? `<td class="snow">${data.snow} mm</td>` : "",
+            data.clouds ? `<td class="clouds">${data.clouds}%</td>` : "",
+            data.wind_speed ? `<td class="wind">${data.wind_speed} ${unit.speed}</td>` : "",
           "</tr>",
         "</table>",
       "</div>",
