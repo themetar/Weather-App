@@ -2,7 +2,7 @@ const apiKey = "b2f923af492ef49f597b7a7055e0035f";
 
 async function getCurrentWeather(location = "Bitola", units = "metric") {
   try {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`);
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -19,7 +19,7 @@ function filterWeatherData (data) {
     location: `${data.name}, ${data.sys.country}`,
     group:          data.weather[0].main,
     description:    data.weather[0].description,
-    icon_url:       `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+    icon_url:       `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
     temperature:    data.main.temp,
     feels_like:     data.main.feels_like,
     clouds:         data.clouds && data.clouds.all,
