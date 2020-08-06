@@ -16,6 +16,7 @@ async function getCurrentWeather(location = "Bitola", units = "metric") {
 
 function filterWeatherData (data) {
   return {
+    location: `${data.name}, ${data.sys.country}`,
     group:          data.weather[0].main,
     description:    data.weather[0].description,
     icon_url:       `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
@@ -72,6 +73,7 @@ function displayData (data) {
   } else {
     let lines = [
       "<div>",
+        `<p class="location">${data.location}</p>`,
         '<div class="description">',
           "<div>",
             `<p>${data.group}</p>`,
