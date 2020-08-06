@@ -40,6 +40,8 @@ document.getElementsByTagName("form")[0].addEventListener("submit", async event 
   if (loading) return;
 
   loading = true;
+  const ldAnimation = document.getElementById("loading-animation");
+  ldAnimation.classList.add("show");
 
   const form = event.target;
   const location = form.querySelector("input[name=location").value;
@@ -52,7 +54,8 @@ document.getElementsByTagName("form")[0].addEventListener("submit", async event 
   } catch (error) {
     displayData("Wrong parameters");
   } finally {
-    loading = false;
+  ldAnimation.classList.remove("show");
+  loading = false;
   }
 });
 

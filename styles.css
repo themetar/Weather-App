@@ -129,3 +129,62 @@ table th {
   font-size: 12px;
   text-align: left;
 }
+
+/* Loading animation */
+
+#loading-animation {
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  margin-top: -5px;
+  transform: translate(-50%);
+  background: white;
+  z-index: 2;
+
+  display: none;
+}
+
+#loading-animation.show {
+  display: block;
+}
+
+#loading-animation::before,
+#loading-animation::after {
+  /* for both */
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 5px;
+  /* overwritten for ::after */
+  background-color: #666;
+  box-shadow: 0 0 2px orange;
+  animation: rl 1s ease-in-out alternate infinite;
+}
+
+#loading-animation::after {
+  background-color: orange;
+  box-shadow: 0 0 2px #666;
+  animation: lr 1s ease-in-out alternate infinite;
+}
+
+@keyframes lr {
+  0% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(90px) scale(2);
+  }
+}
+
+@keyframes rl {
+  0% {
+    transform: translateX(95px);
+  }
+
+  100% {
+    transform: translateX(-10px) scale(2);
+  }
+}
