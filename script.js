@@ -77,7 +77,7 @@ function displayData (data) {
         '<div class="description">',
           "<div>",
             `<p>${data.group}</p>`,
-            `<p>${data.description}</p>`,
+            `<p>${data.description.replace(/./, m => m.toUpperCase())}</p>`,
           "</div>",
           `<img src="${data.icon_url}" />`,
         "</div>",
